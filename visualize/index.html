@@ -1,0 +1,177 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>IOT</title>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <style>
+        table {
+            margin: 0 auto;
+            font-size: large;
+            border: 1px solid black;
+        }
+
+        .sensor-title {
+            text-align: center;
+            font-size: xx-large;
+            font-family: 'Gill Sans',
+                'Gill Sans MT', ' Calibri',
+                'Trebuchet MS', 'sans-serif';
+        }
+
+        td {
+            background-color: #d4f5f5;
+            border: 1px solid black;
+        }
+
+        th,
+        td {
+            font-weight: bold;
+            border: 1px solid black;
+            padding: 10px;
+            text-align: center;
+        }
+
+        td {
+            font-weight: lighter;
+        }
+    </style>
+</head>
+
+<body>
+    <section id="humidity-section">
+        <h2 class="sensor-title">Humidity</h2>
+        <table id='humidity-table'>
+            <tr>
+                <th>Log ID</th>
+                <th>Log Date</th>
+                <th>Device ID</th>
+                <th>Device Name</th>
+                <th>Humidity %</th>
+            </tr>
+        </table>
+    </section>
+
+    <section id="acceleration-section">
+        <h2 class="sensor-title">Acceleration</h2>
+        <table id='acceleration-table'>
+            <tr>
+                <th>Log ID</th>
+                <th>Log Date</th>
+                <th>Device ID</th>
+                <th>Device Name</th>
+                <th>Acceleration °</th>
+            </tr>
+        </table>
+    </section>
+
+    <section id="gas-section">
+        <h2 class="sensor-title">Gas</h2>
+        <table id='gas-table'>
+            <tr>
+                <th>Log ID</th>
+                <th>Log Date</th>
+                <th>Device ID</th>
+                <th>Device Name</th>
+                <th>Gas</th>
+            </tr>
+        </table>
+    </section>
+
+    <section id="touch-section">
+        <h2 class="sensor-title">Touch</h2>
+        <table id='touch-table'>
+            <tr>
+                <th>Log ID</th>
+                <th>Log Date</th>
+                <th>Device ID</th>
+                <th>Device Name</th>
+                <th>Touch</th>
+            </tr>
+        </table>
+    </section>
+
+    <section id="fire-section">
+        <h2 class="sensor-title">Fire</h2>
+        <table id='fire-table'>
+            <tr>
+                <th>Log ID</th>
+                <th>Log Date</th>
+                <th>Device ID</th>
+                <th>Device Name</th>
+                <th>Fire</th>
+            </tr>
+        </table>
+    </section>
+    <script>
+        // Fetch Humidity JSON data
+        $(document).ready(function () {
+            $.getJSON('getLogsHumid/1', function (data) {
+                $.each(data.data, function (key, value) {
+                    var tableValues = "<tr>" +
+                        "<td>" + value.log_id + "</td>" + "<td>" + value.log_date + "</td>" + "<td>" + value.device_id + "</td>" + "<td>" + value.device_name + "</td>" + "<td>" + value.humid + "</td>" + "</tr>";
+                    $('#humidity-table').append(tableValues);
+                });
+            });
+        });
+
+        // Fetch Acceleration JSON data
+        $(document).ready(function () {
+            $.getJSON('getLogsAce/2', function (data) {
+                $.each(data.data, function (key, value) {
+                    var tableValues = "<tr>" +
+                        "<td>" + value.log_id + "</td>" + "<td>" + value.log_date + "</td>" + "<td>" + value.device_id + "</td>" + "<td>" + value.device_name + "</td>" + "<td>" + value.ace + "</td>" + "</tr>";
+                    $('#acceleration-table').append(tableValues);
+                });
+            });
+        });
+
+        // Fetch Gas JSON data
+        $(document).ready(function () {
+            $.getJSON('getLogsGas/3', function (data) {
+                $.each(data.data, function (key, value) {
+                    var tableValues = "<tr>" +
+                        "<td>" + value.log_id + "</td>" + "<td>" + value.log_date + "</td>" + "<td>" + value.device_id + "</td>" + "<td>" + value.device_name + "</td>" + "<td>" + value.gas + "</td>" + "</tr>";
+                    $('#gas-table').append(tableValues);
+                });
+            });
+        });
+
+        // Fetch Touch JSON data
+        $(document).ready(function () {
+            $.getJSON('getLogsTouch/4', function (data) {
+                $.each(data.data, function (key, value) {
+                    var tableValues = "<tr>" +
+                        "<td>" + value.log_id + "</td>" + "<td>" + value.log_date + "</td>" + "<td>" + value.device_id + "</td>" + "<td>" + value.device_name + "</td>" + "<td>" + value.touch + "</td>" + "</tr>";
+                    $('#touch-table').append(tableValues);
+                });
+            });
+        });
+
+        // Fetch Fire JSON data
+        $(document).ready(function () {
+            $.getJSON('getLogsFire/5', function (data) {
+                $.each(data.data, function (key, value) {
+                    var tableValues = "<tr>" +
+                        "<td>" + value.log_id + "</td>" + "<td>" + value.log_date + "</td>" + "<td>" + value.device_id + "</td>" + "<td>" + value.device_name + "</td>" + "<td>" + value.fire + "</td>" + "</tr>";
+                    $('#fire-table').append(tableValues);
+                });
+            });
+        });
+    </script>
+    <script>
+        // // Refresh page timer
+        // function startRefresh() {
+        //     $.get('', function (data) {
+        //         $(document.body).html(data);
+        //     });
+        // }
+        // $(function () {
+        //     //10 seconds
+        //     setTimeout(startRefresh, 10000);
+        // });
+    </script>
+</body>
+
+</html>
